@@ -1,0 +1,20 @@
+-- Este script SQL realiza uma análise de dados para identificar registros com valores nulos em campos específicos.
+
+SELECT 
+	COUNT(CPF_CNPJ) AS TOTAL_BASE,
+	SUM( 
+	CASE
+		WHEN TELEFONE IS NULL THEN 1
+		ELSE 0
+	END) AS TELEFONE_NULL,
+	SUM( 
+	CASE
+		WHEN EMAIL IS NULL THEN 1 
+		ELSE 0
+	END) AS EMAIL_NULL,
+	SUM( 
+	CASE
+		WHEN TELEFONE AND EMAIL IS NULL THEN 1
+		ELSE 0
+	END) AS EMAIL_TELEFONE_NULL
+FROM TABELA A;
